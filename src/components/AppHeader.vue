@@ -1,11 +1,13 @@
 <template>
-  <main>
-    
-  </main>
+  <div>
+    <header-search/>
+  </div>
 </template>
 
 <script>
+import HeaderSearch from './HeaderSearch.vue'
 export default {
+  components: { HeaderSearch },
     name:'AppHeader',
     data(){
         return{
@@ -24,8 +26,12 @@ export default {
 }
 </script>
 
-<style lang="scss" >
+<style lang="scss" scoped>
 @import "./style/general.scss";
+
+div{
+  height: 10vh;
+}
 
 
 </style>
