@@ -32,17 +32,17 @@ export default {
     },
     methods:{
         searchButton(){
-            console.log(this.inputText)
+            axios.get('https://api.themoviedb.org/3/search/movie?api_key=e99307154c6dfb0b4750f6603256716d&language=it-IT&query=' + this.inputText).then((res)=>{
+            console.log(res.data.results)
+            this.search = res.data.results
+        })
         }
     },
     computed:{
 
     },
     mounted(){
-        axios.get('https://api.themoviedb.org/3/search/movie?api_key=38a7eab306a51e535e2c63ccee24a9bf&language=it-IT&query=star').then((res)=>{
-            console.log(res.data.results)
-            this.search = res.data.results
-        })
+        
     }
 }
 </script>
