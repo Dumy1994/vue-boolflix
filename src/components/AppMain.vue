@@ -25,14 +25,28 @@ export default {
         return{
             inputText: '',
             apiPath:'https://api.themoviedb.org/3/search/',
-            api_key:'=e99307154c6dfb0b4750f6603256716d',
+            apiKey:'?api_key==e99307154c6dfb0b4750f6603256716d',
             search:[],
             index: [],
+            compApi: {
+                params:{
+                    api_key: this.apiKey,
+                    query: this.inputText,
+                    language: 'it-IT'
+                }
+            }
         }
     },
     methods:{
         searchButton(){
-            axios.get('https://api.themoviedb.org/3/search/movie?api_key=e99307154c6dfb0b4750f6603256716d&language=it-IT&query=' + this.inputText).then((res)=>{
+            // const compApi = {
+            //     params:{
+            //         api_key: this.apiKey;
+            //         query: this.inputText;
+            //         language: 'it-IT'
+            //     }
+            // }
+            axios.get(this.apiPath + 'movie' + this.compApi.params).then((res)=>{
             console.log(res.data.results)
             this.search = res.data.results
         })
