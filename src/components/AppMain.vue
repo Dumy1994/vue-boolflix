@@ -1,47 +1,59 @@
 <template>
   <main class="container">
-    <div class="input-group mt-5 mb-3 barInput">
-        <input @keyup.enter="searchButton" type="text" class="form-control" placeholder="Search" aria-label="Recipient's username" aria-describedby="button-addon2" v-model="inputText">
-        <button @click="searchButton" class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
-        
-    </div>
+   <app-header @performSearch="search" />
     
-    <comp-main-template v-for="(film, index) in search" :key="index" :vote_average="film.vote_average" :original_language="film.original_language" :title="film.title" :original_title="film.original_title"/>
+    <comp-main-template :items="movies" title="Movies" />
+    <comp-main-template :items="series" title="Series" />
   </main>
 </template>
 
 <script>
 import axios from 'axios';
 import CompMainTemplate from './CompMainTemplate.vue';
+import AppHeader from './AppHeader.vue';
 
 export default {
-  components: { CompMainTemplate },
+  components: { CompMainTemplate, AppHeader },
     name:'AppMain',
     data(){
         return{
             inputText: '',
             apiPath:'https://api.themoviedb.org/3/search/',
-            api_key:'=e99307154c6dfb0b4750f6603256716d',
-            search:[],
-            index: [],
-            // compApi: {
-            // params:{
-            //     api_key: this.apiKey,
-            //     query: this.inputText,
-            //     language: 'it-IT'
-            //     }
-            // }
+            apiKey:'e99307154c6dfb0b4750f6603256716d',
+            movies:[],
+            series: [],
         }
     },
     methods:{
-        searchButton(){
-            axios.get('https://api.themoviedb.org/3/search/movie?api_key=e99307154c6dfb0b4750f6603256716d&language=it-IT&query=' + this.inputText).then((res)=>{
-            console.log(res.data.results)
-            this.search = res.data.results
-            })
-        },
-       
+    getMovies(queryParams){
+      axios.get(this.apiPath + 'movie', queryParams).then((res)=>{
+        this.movies = res.data.results;
+        // this.loading = false;
+      }).catch((error)=>{
+        console.log(error);
+      })
     },
+    getSeries(queryParams){
+      axios.get(this.apiPath + 'tv', queryParams).then((res)=>{
+        this.series = res.data.results;
+        // this.loadingSeries = false;
+      }).catch((error)=>{
+        console.log(error);
+      })
+    },
+    search(text){
+       const queryParams = {
+        params:{
+          api_key: this.apiKey,
+          query: text,
+        }
+      }
+    //   this.loading = true;
+    //   this.loadingSeries = true;
+      this.getMovies(queryParams);
+      this.getSeries(queryParams);
+    }
+  },
     computed:{
 
     },

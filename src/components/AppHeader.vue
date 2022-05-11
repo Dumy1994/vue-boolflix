@@ -1,24 +1,30 @@
 <template>
-  <div>
-    <header-search/>
-  </div>
+     <div>
+      <input type="text" v-model="search" @keyup.enter="$emit('performSearch',search)">
+      <button @click="cerca">Cerca</button>
+    </div>
 </template>
 
 <script>
-import HeaderSearch from './HeaderSearch.vue'
+// import state from '../store.js'
 export default {
-  components: { HeaderSearch },
+  components: { },
     name:'AppHeader',
     data(){
         return{
-
+          search:'' 
         }
     },
     methods:{
-
+      cerca(){
+            this.$emit('performSearch',this.search)
+            this.search = ''
+        }
     },
     computed:{
-
+      // mysearch(){
+      //   return state.search
+      // }
     },
     mounted(){
 
