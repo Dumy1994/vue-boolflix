@@ -69,5 +69,8 @@ export default {
 </script>
 
 <style lang="scss">
-
+@import "./components/style/general.scss";
+main{
+  width: 100vw;
+}
 </style>

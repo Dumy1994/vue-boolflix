@@ -1,7 +1,13 @@
 <template>
-     <div>
-      <input type="text" v-model="search" @keyup.enter="$emit('performSearch',search)">
-      <button @click="cerca">Cerca</button>
+    <div class="d-flex justify-content-center align-items-center container-header">
+      <div class="col-6">
+        <h1>BOOLFLIX</h1>
+      </div>
+      <div class="col-6">
+        <input type="text" v-model="search" @keyup.enter="$emit('performSearch',search)">
+        <button @click="cerca">Cerca</button>
+      </div>
+      
     </div>
 </template>
 
@@ -13,7 +19,6 @@ export default {
     data(){
         return{
           search:'',
-     
         }
     },
     methods:{
@@ -23,9 +28,7 @@ export default {
         }
     },
     computed:{
-      // mysearch(){
-      //   return state.search
-      // }
+     
     },
     mounted(){
 
@@ -36,8 +39,9 @@ export default {
 <style lang="scss" scoped>
 @import "./style/general.scss";
 
-div{
+.container-header{
   height: 10vh;
+  background-color: rgb(105, 88, 88);
 }
 
 
