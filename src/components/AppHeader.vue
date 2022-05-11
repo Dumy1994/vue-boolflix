@@ -6,13 +6,14 @@
 </template>
 
 <script>
-// import state from '../store.js'
+
 export default {
   components: { },
     name:'AppHeader',
     data(){
         return{
-          search:'' 
+          search:'',
+     
         }
     },
     methods:{

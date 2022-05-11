@@ -1,8 +1,8 @@
 import Vue from 'vue';
 
 const state = Vue.observable({
-    search: '',
-    movies: [],
-    series:[]
+    search: 'hhh',
+    // movies: [],
+    // series:[],
 })
 export default state;
