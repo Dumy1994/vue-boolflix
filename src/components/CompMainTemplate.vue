@@ -4,18 +4,22 @@
              <h2>{{title}}</h2>
         </div>
        <div class="grid">
-           <ul class="row justify-content-center">
+           <ul class="row  justify-content-center">
             
-                <li class="card col-3" v-for="(item) in items" :key="item.id">
-                <img class="img-film" :src="'https://image.tmdb.org/t/p/w342/' + item.backdrop_path" :alt="item.original_title ">
+                <li class="card img-film p-0 col-3" v-for="(item) in items" :key="item.id">
+                <img class="" :src="'https://image.tmdb.org/t/p/w342/' + item.backdrop_path" :alt="item.original_title ">
                 <div class="info">
-                    <h3>
-                        Original title: {{item.original_title ? item.original_title : item.original_name}}
-                    </h3>
                     
-                    <h3>
-                        Italian title: {{item.title ? item.title : item.name}}
-                    </h3>
+                    <div class="title-movie">
+                        <h3 v-if="item.original_title  == item.title">
+                            Original title: {{item.original_title ? item.original_title : item.original_name}} 
+                        </h3>
+                        <h3 v-if="item.original_title !== item.title">
+                            Italian title: {{item.title ? item.title : item.name}} <br>
+                            Original title: {{item.original_title ? item.original_title : item.original_name}} 
+                        </h3>
+                    </div>
+                    
                     <div>
                         Lingua: 
                         <img class="flag" v-if="flags.includes(item.original_language)" :src="require(`../assets/${item.original_language}.jpg`)" :alt="item.original_language">
@@ -28,8 +32,11 @@
                         <i :class="i <= transformScale(item) ? 'fa-solid gold fa-star' : 'fa-regular fa-star'"></i>
                     </span>
                 </div>
-                <div class="ghost">
-
+                <div class="ghost text-center">
+                    <h3>Review</h3>
+                    <h3>
+                        {{item.overview ? item.overview : 'Not available at the moment, we apologize.'}}
+                    </h3>
                 </div>
                 
                 </li>
@@ -80,7 +87,6 @@ export default {
            margin: 10px ;
            width: calc((100vw / 3) - 20px) !important;
            .img-film{
-            width: 100% !important;
             
            }
         }
@@ -91,5 +97,17 @@ export default {
     .ghost{
         position: absolute;
         left: 0;
+        background-color:$bg_card;
+        color: $white-text;
+        height:230px ;
+        width: 100%;
+        overflow: scroll;
+        border-radius: 2px;
+        display: none;
+        cursor: pointer;
     }
+    .img-film:hover .ghost{
+        display: block;
+    }
+
 </style>

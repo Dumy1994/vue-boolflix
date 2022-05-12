@@ -51,6 +51,7 @@ export default {
        const queryParams = {
         params:{
           api_key: this.apiKey,
+          language: 'it-IT',
           query: text,
         }
       }
