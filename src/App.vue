@@ -71,7 +71,20 @@ export default {
 
 <style lang="scss">
 @import "./components/style/general.scss";
-main{
+header{
+  background-color: $bg-header;
+  height: 7vh;
+  position: fixed;
+  left: 0;
+  top: 0;
   width: 100vw;
+  z-index: 1000;
+}
+main{
+  margin-top: 7vh;
+  min-height: 93vh;
+  width: 100vw;
+  background-color: $bg-main;
+  color: $grey-text;
 }
 </style>
