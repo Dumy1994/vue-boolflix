@@ -10,8 +10,19 @@
                 <!-- id: {{item.id}}<br /> -->
                 Titolo originale: {{item.original_title ? item.original_title : item.original_name}}<br />
                 Titolo: {{item.title ? item.title : item.name}}<br />
-                Lingua: <img class="flag" :src="(item.original_language !== 'it') ? item.original_language : require('../assets/' + item.original_language + '.jpg') " >
-                Voto: {{item.vote_average}}<br/>
+                <div>
+                    Lingua: 
+                    <img class="flag" v-if="flags.includes(item.original_language)" :src="require(`../assets/${item.original_language}.jpg`)" :alt="item.original_language">
+                    <span v-esle>
+                        {{item.original_language}}
+                    </span>
+                </div>
+                
+                Voto: 
+                <span v-for="(i,index) in 5" :key="index">
+                    <i :class="i <= transformScale(item) ? 'fa-solid gold fa-star' : 'fa-regular fa-star'"></i>
+                </span>
+              
             </div>
             
             </li>
@@ -20,24 +31,28 @@
 </template>
 
 <script>
-//import {state, actions} from '../store.js'
+
 export default {
     name: 'GridList',
-    props:['items','title'],
+    props:{
+        items: Array,
+        // loader: Boolean,
+        title: String
+    },
     data(){
         return {
-            
+            flags:['en', 'es','it']
         }
     },
     computed: {
-        // mysearch(){
-        //     return state.search
-        // }
+        
     },
     methods:{
-        // leggi(){
-        //     actions.setSearch('aaaaa')
-        // }
+        transformScale(item){
+            return parseInt(item.vote_average / 2) 
+        },
+        
+        
     }
 }
 </script>
@@ -58,5 +73,8 @@ export default {
             
            }
         }
+    }
+    .gold{
+        color: rgb(224, 224, 15);
     }
 </style>

@@ -2,6 +2,7 @@
   <div id="app">
     <header>
      <app-header @performSearch="search" />
+     
     </header>
    <main>
     <comp-main-template :items="movies" title="Movies" />

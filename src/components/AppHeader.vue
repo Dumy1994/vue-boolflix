@@ -2,6 +2,7 @@
     <div class="d-flex justify-content-center align-items-center container-header">
       <div class="col-6">
         <h1>BOOLFLIX</h1>
+        
       </div>
       <div class="col-6">
         <input type="text" v-model="search" @keyup.enter="$emit('performSearch',search)">
@@ -37,7 +38,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "./style/general.scss";
+
 
 .container-header{
   height: 10vh;
