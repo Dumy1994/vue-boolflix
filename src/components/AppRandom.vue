@@ -4,9 +4,14 @@
         <div class=" card col-3" v-for="(img, index) in randomFilm" :key="index">
             <img class="" :src="'https://image.tmdb.org/t/p/w342/' + img.backdrop_path" alt=" ">
             <div class="info  text-center">
-            <h3>
+            <h2>
                {{img.title}}
-            </h3>
+
+            </h2>
+            <h5>Voto: {{transformScale(img)}}</h5>
+            <span  v-for="(i,index) in 5" :key="index">
+                <i :class="i <= transformScale(img) ? 'fa-solid gold fa-star' : 'fa-regular fa-star'"></i>
+            </span>
             
             </div>  
         </div>
@@ -30,7 +35,9 @@ export default {
         }
     },
     methods:{
-        
+        transformScale(img){
+            return parseInt(img.vote_average / 2) 
+        },
     },
     mounted(){
         axios.get('https://api.themoviedb.org/3/trending/movie/day?api_key=e99307154c6dfb0b4750f6603256716d&language=it-IT').then((res)=>{
@@ -48,6 +55,9 @@ export default {
 .container-random{
    width: 100vw;
 }
+.gold{
+        color: rgb(224, 224, 15);
+    }
 .card{
    margin: 0 !important;
    padding: 0 !important;
@@ -55,6 +65,7 @@ export default {
 }
 .card:hover .info{
     display: block;
+    cursor: pointer;
 
 }
 .info{
