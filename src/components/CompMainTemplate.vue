@@ -3,7 +3,10 @@
        <div class="grid">
            <ul class="row  justify-content-center">
                 <li class="card img-film p-0 col-3" v-for="(item) in items" :key="item.id">
-                <img class="" :src="'https://image.tmdb.org/t/p/w342/' + item.backdrop_path" :alt="item.original_title ">
+                    <div class="filmImg" >
+                        <img :src="'https://image.tmdb.org/t/p/w342/' + item.backdrop_path" :alt="item.original_title ">
+                    </div>
+                
                 <div class="info">
                     <div class="title-movie">
                         <h3 v-if="item.original_title  == item.title">
@@ -131,29 +134,20 @@ export default {
     .gold{
         color: rgb(224, 224, 15);
     }
-    .ghost{
-        position: absolute;
-        left: 0;
-        background-color:$bg_card;
-        color: $white-text;
-        height:230px ;
-        width: 100%;
-        overflow: scroll;
-        border-radius: 2px;
-        display: none;
-        cursor: pointer;
-    }
+    
     
     .review-film-button{
         position: absolute;
-        left: 0;
+        right: 0;
         top: 0;
         background-color:$white-text;
         z-index: 10000;
         color: $bg-text-card;
         cursor: pointer;
         padding: 5px;
-        border-bottom-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border-left: 1px solid black;
+        border-bottom: 1px solid black;
     }
     // .info-film-button{
     //     position: absolute;
@@ -174,8 +168,16 @@ export default {
         height: 100%;
         width: 100%;
         overflow: scroll;
+        border-radius: 5px;
         h3{
             margin-top: 30px;
+        }
+    }
+    .filmImg{
+        min-height: 50px;
+        img{
+            width: 100%;
+            border-top-left-radius: 5px;
         }
     }
 
