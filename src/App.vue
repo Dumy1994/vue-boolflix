@@ -6,6 +6,8 @@
     </header>
    <main>
      <app-loader v-if="loading" />
+     <app-random v-if="show"/>
+    
     <comp-main-template :items="movies" title="Movies" />
     <comp-main-template :items="series" title="Series" />
    </main>
@@ -17,10 +19,11 @@ import axios from 'axios';
 import AppHeader from './components/AppHeader.vue';
 import CompMainTemplate from './components/CompMainTemplate.vue';
 import AppLoader from './components/AppLoader.vue';
+import AppRandom from './components/AppRandom.vue';
 
 export default {
   name: 'App',
-  components: {CompMainTemplate,AppHeader, AppLoader  },
+  components: {CompMainTemplate,AppHeader, AppLoader, AppRandom  },
 
       data(){
         return{
@@ -30,7 +33,7 @@ export default {
             movies:[],
             series: [],
             loading:false,
-            
+            show: true,
         }
   },
   methods:{
@@ -38,6 +41,7 @@ export default {
       axios.get(this.apiPath + 'movie', queryParams).then((res)=>{
         this.movies = res.data.results;
         this.loading = false;
+        this.show = false;
       }).catch((error)=>{
         console.log(error);
       })
@@ -67,9 +71,8 @@ export default {
     computed:{
 
     },
-    mounted(){
-        
-    }
+
+    
 }
 </script>
 
