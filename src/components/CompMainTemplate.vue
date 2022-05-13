@@ -2,7 +2,7 @@
     <section class="container-fluid pt-3">
        <div class="grid">
            <ul class="row  justify-content-center">
-                <li class="card img-film p-0 col-3" v-for="(item) in items" :key="item.id">
+                <li class="card cardCercato img-film p-0 col-3" v-for="(item) in items" :key="item.id">
                     <div class="filmImg" >
                         <img :src="'https://image.tmdb.org/t/p/w342/' + item.backdrop_path" :alt="item.original_title ">
                     </div>
@@ -195,7 +195,7 @@ export default {
     .color-title-original{
         color: $bg-text-card;
     }
-    .card{
+    .cardCercato{
         min-height: 400px;
     }
 
