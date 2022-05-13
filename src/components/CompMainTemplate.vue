@@ -179,14 +179,14 @@ export default {
         }
     }
     .title-movie{
-        min-height: 80px;
+        min-height: 100px;
         
     }
     .voto{
        margin-right: 10px; 
     }
     .filmImg{
-        min-height: 63%;
+        min-height: 50%;
         img{
             width: 100%;
             border-top-left-radius: 5px;
@@ -194,6 +194,9 @@ export default {
     }
     .color-title-original{
         color: $bg-text-card;
+    }
+    .card{
+        min-height: 400px;
     }
 
 </style>
