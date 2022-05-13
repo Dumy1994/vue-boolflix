@@ -5,6 +5,7 @@
         <h1>BOOLFLIX</h1>
       </div>
       <div class="col-6 input-button d-flex justify-content-end">
+        <h4 class="">Cerca film o serie</h4>
         <input type="text" placeholder="Search" v-model="search" @keyup.enter="cerca">
         <button @click="cerca">Cerca</button>
       </div>

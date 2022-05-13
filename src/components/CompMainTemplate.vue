@@ -1,11 +1,15 @@
 <template>
     <section class="container-fluid">
-        <div>
-            {{randomFilm}}
-        </div>
+        
+        
         <div class="title text-center">
              <h2>{{title}}</h2>
         </div>
+        <!-- <div class="row " v-if="show = show">
+            <div class=" col-4" v-for="(img, index) in randomFilm" :key="index">
+                 <img class="" :src="'https://image.tmdb.org/t/p/w342/' + img.backdrop_path" alt=" ">
+            </div>
+        </div> -->
        <div class="grid">
            <ul class="row  justify-content-center">
                 <li class="card img-film p-0 col-3" v-for="(item) in items" :key="item.id">
@@ -68,6 +72,7 @@ export default {
     name: 'GridList',
     props:{
         items: Array,
+        
         // loader: Boolean,
         title: String
     },
@@ -78,12 +83,14 @@ export default {
             review_film: '',
             img: 'https://image.tmdb.org/t/p/w342/',
             mainPage: true,
-            randomFilm:''
+            randomFilm:'',
+            
         }
     },
     
     
     methods:{
+        
         
         transformScale(item){
             return parseInt(item.vote_average / 2) 
@@ -102,17 +109,17 @@ export default {
                 return this.review_film = ''
             }
         },
-        random(){
-           axios.get('https://api.themoviedb.org/3/trending/movie/day?api_key=e99307154c6dfb0b4750f6603256716d').then((res)=>{
-                this.randomFilm = res.data.results;
-                console.log(this.randomFilm)
-                })
-            
-        },  
+          
     },
     computed: {
         
     },
+    mounted(){
+        axios.get('https://api.themoviedb.org/3/trending/movie/day?api_key=e99307154c6dfb0b4750f6603256716d').then((res)=>{
+                this.randomFilm = res.data.results;
+                console.log(this.randomFilm)
+                })
+    }
 }
 </script>
 
