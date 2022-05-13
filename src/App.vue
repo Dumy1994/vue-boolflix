@@ -5,6 +5,7 @@
      
     </header>
    <main>
+     <app-loader v-if="loading" />
     <comp-main-template :items="movies" title="Movies" />
     <comp-main-template :items="series" title="Series" />
    </main>
@@ -15,10 +16,11 @@
 import axios from 'axios';
 import AppHeader from './components/AppHeader.vue';
 import CompMainTemplate from './components/CompMainTemplate.vue';
+import AppLoader from './components/AppLoader.vue';
 
 export default {
   name: 'App',
-  components: {CompMainTemplate,AppHeader  },
+  components: {CompMainTemplate,AppHeader, AppLoader  },
 
       data(){
         return{
@@ -27,14 +29,15 @@ export default {
             apiKey:'e99307154c6dfb0b4750f6603256716d',
             movies:[],
             series: [],
-     
+            loading:false,
+            
         }
   },
   methods:{
     getMovies(queryParams){
       axios.get(this.apiPath + 'movie', queryParams).then((res)=>{
         this.movies = res.data.results;
-        // this.loading = false;
+        this.loading = false;
       }).catch((error)=>{
         console.log(error);
       })
@@ -42,7 +45,7 @@ export default {
     getSeries(queryParams){
       axios.get(this.apiPath + 'tv', queryParams).then((res)=>{
         this.series = res.data.results;
-        // this.loadingSeries = false;
+        
       }).catch((error)=>{
         console.log(error);
       })
@@ -53,10 +56,10 @@ export default {
           api_key: this.apiKey,
           language: 'it-IT',
           query: text,
+          
         }
       }
-    //   this.loading = true;
-    //   this.loadingSeries = true;
+      this.loading = true;
       this.getMovies(queryParams);
       this.getSeries(queryParams);
     }

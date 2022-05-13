@@ -5,7 +5,7 @@
         <h1>BOOLFLIX</h1>
       </div>
       <div class="col-6 input-button d-flex justify-content-end">
-        <input type="text" v-model="search" @keyup.enter="$emit('performSearch',search)">
+        <input type="text" placeholder="Search" v-model="search" @keyup.enter="cerca">
         <button @click="cerca">Cerca</button>
       </div>
       
