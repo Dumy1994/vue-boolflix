@@ -186,7 +186,7 @@ export default {
        margin-right: 10px; 
     }
     .filmImg{
-        min-height: 60%;
+        min-height: 63%;
         img{
             width: 100%;
             border-top-left-radius: 5px;

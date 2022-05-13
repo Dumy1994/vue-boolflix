@@ -89,7 +89,6 @@ header{
 }
 main{
   margin-top: 7vh;
-  min-height: 93vh;
   width: 100vw;
   background-color: $bg-main;
   color: $grey-text;
