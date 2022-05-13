@@ -7,19 +7,22 @@
                         <img :src="'https://image.tmdb.org/t/p/w342/' + item.backdrop_path" :alt="item.original_title ">
                     </div>
                 
-                <div class="info">
+                <div class="info p-1">
                     <div class="title-movie">
                         
-                        <h3 v-if="item.original_title  == item.title">
+                        <h3 class="color-title-original" v-if="item.original_title  == item.title">
                             Original title: {{item.original_title ? item.original_title : item.original_name}} 
                         </h3>
                         <h3 v-if="item.original_title !== item.title">
-                            Italian title: {{item.title ? item.title : item.name}} <br>
+                            <h3 class="color-title-original">
                             Original title: {{item.original_title ? item.original_title : item.original_name}} 
+                            </h3> 
+                            Italian title: {{item.title ? item.title : item.name}} <br>
+                            
                         </h3>
                     </div>
                     <div >
-                        Lingua: 
+                        Lingua originale: 
                         <img class="flag" v-if="flags.includes(item.original_language)" :src="require(`../assets/${item.original_language}.jpg`)" :alt="item.original_language">
                         <span v-esle>
                             {{item.original_language}}
@@ -177,17 +180,20 @@ export default {
     }
     .title-movie{
         min-height: 80px;
-        padding: 10px;
+        
     }
     .voto{
        margin-right: 10px; 
     }
     .filmImg{
-        min-height: 50px;
+        min-height: 60%;
         img{
             width: 100%;
             border-top-left-radius: 5px;
         }
+    }
+    .color-title-original{
+        color: $bg-text-card;
     }
 
 </style>
