@@ -8,8 +8,8 @@
      <app-loader v-if="loading" />
      <app-random v-if="show"/>
     
-    <comp-main-template :items="movies" title="Movies" />
-    <comp-main-template :items="series" title="Series" />
+    <comp-main-template :items="movies" title="Movie" />
+    <comp-main-template :items="series" title="Serie" />
    </main>
   </div>
 </template>

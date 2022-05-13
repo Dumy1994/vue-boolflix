@@ -1,5 +1,5 @@
 <template>
-    <section class="container-fluid">
+    <section class="container-fluid pt-3">
        <div class="grid">
            <ul class="row  justify-content-center">
                 <li class="card img-film p-0 col-3" v-for="(item) in items" :key="item.id">
@@ -9,6 +9,7 @@
                 
                 <div class="info">
                     <div class="title-movie">
+                        
                         <h3 v-if="item.original_title  == item.title">
                             Original title: {{item.original_title ? item.original_title : item.original_name}} 
                         </h3>
@@ -17,17 +18,18 @@
                             Original title: {{item.original_title ? item.original_title : item.original_name}} 
                         </h3>
                     </div>
-                    <div>
+                    <div >
                         Lingua: 
                         <img class="flag" v-if="flags.includes(item.original_language)" :src="require(`../assets/${item.original_language}.jpg`)" :alt="item.original_language">
                         <span v-esle>
                             {{item.original_language}}
                         </span>
-                    </div>
+                    </div >
                     Voto: 
-                    <span v-for="(i,index) in 5" :key="index">
+                    <span  v-for="(i,index) in 5" :key="index">
                         <i :class="i <= transformScale(item) ? 'fa-solid gold fa-star' : 'fa-regular fa-star'"></i>
                     </span>
+                    <h3 class="float-end voto">{{title}}</h3>
                 </div>
                 <!-- review  -->
                 <div @click="openClose(item)"  class="review-film-button">
@@ -172,6 +174,13 @@ export default {
         h3{
             margin-top: 30px;
         }
+    }
+    .title-movie{
+        min-height: 80px;
+        padding: 10px;
+    }
+    .voto{
+       margin-right: 10px; 
     }
     .filmImg{
         min-height: 50px;
