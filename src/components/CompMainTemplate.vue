@@ -2,9 +2,9 @@
     <section class="container-fluid pt-3">
        <div class="grid">
            <ul class="row  justify-content-center">
-                <li class="card cardCercato img-film p-0 col-3" v-for="(item) in items" :key="item.id">
+                <li class="card cardCercato img-film p-0 col-sm-4 col-md-3 col-lg-3" v-for="(item) in items" :key="item.id">
                     <div class="filmImg" >
-                        <img :src="'https://image.tmdb.org/t/p/w342/' + item.backdrop_path" :alt="item.original_title ">
+                        <img :src="'https://image.tmdb.org/t/p/w342/' + item.poster_path" :alt="item.original_title ">
                     </div>
                 
                 <div class="info p-1">
@@ -23,7 +23,7 @@
                     </div>
                     <div >
                         Lingua originale: 
-                        <img class="flag" v-if="flags.includes(item.original_language)" :src="require(`../assets/${item.original_language}.jpg`)" :alt="item.original_language">
+                        <img class="flag" v-if="flags.includes(item.original_language)" :src="require(`../assets/${item.original_language}.png`)" :alt="item.original_language">
                         <span v-esle>
                             {{item.original_language}}
                         </span>
@@ -75,7 +75,7 @@ export default {
     },
     data(){
         return {
-            flags:['en', 'es','it'],
+            flags:['en', 'es','it','ja','fr'],
             info_film: '',
             review_film: '',
             img: 'https://image.tmdb.org/t/p/w342/',
@@ -130,7 +130,7 @@ export default {
         padding-right: 0!important;
         li{
            margin: 10px ;
-           width: calc((100vw / 3) - 20px) !important;
+         
            .img-film{
             
            }
@@ -179,14 +179,14 @@ export default {
         }
     }
     .title-movie{
-        min-height: 100px;
+       
         
     }
     .voto{
        margin-right: 10px; 
     }
     .filmImg{
-        min-height: 50%;
+        height: 87%;
         img{
             width: 100%;
             border-top-left-radius: 5px;
@@ -196,7 +196,9 @@ export default {
         color: $bg-text-card;
     }
     .cardCercato{
-        min-height: 400px;
+        max-height: 1000px;
     }
+
+
 
 </style>

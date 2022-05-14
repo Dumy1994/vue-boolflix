@@ -85,7 +85,8 @@ header{
   left: 0;
   top: 0;
   width: 100vw;
-  z-index: 1000;
+  z-index: 100000000;
+  color: $text-header;
 }
 main{
   margin-top: 7vh;

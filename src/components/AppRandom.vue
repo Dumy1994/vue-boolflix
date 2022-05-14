@@ -80,5 +80,13 @@ export default {
 }
 
 
-
+@media only screen and (max-width: 576px) {
+ .text-center{
+     display: none;
+ }
+ .card{
+     margin-top: 50px !important;
+ }
+  
+}
 </style>
