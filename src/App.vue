@@ -34,6 +34,7 @@ export default {
             series: [],
             loading:false,
             show: true,
+            
         }
   },
   methods:{
@@ -58,6 +59,7 @@ export default {
        const queryParams = {
         params:{
           api_key: this.apiKey,
+          genres: '',
           language: 'it-IT',
           query: text,
           

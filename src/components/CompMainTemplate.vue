@@ -1,6 +1,7 @@
 <template>
     <section class="container-fluid pt-3">
        <div class="grid">
+           
            <ul class="row  justify-content-center">
                 <li class="card cardCercato img-film p-0 col-sm-4 col-md-3 col-lg-3" v-for="(item) in items" :key="item.id">
                     <div class="filmImg" >
@@ -9,6 +10,7 @@
                 
                 <div class="info p-1">
                     <div class="title-movie">
+                        
                         
                         <h3 class="color-title-original" v-if="item.original_title  == item.title">
                             Original title: {{item.original_title ? item.original_title : item.original_name}} 
@@ -27,7 +29,13 @@
                         <span v-esle>
                             {{item.original_language}}
                         </span>
+                        
                     </div >
+                    <div v-for="(gen, index) in genres" :key="index">
+                        <span>
+                            {{gen.id == item.genre_ids[0] ? gen.name : ''}}
+                        </span>
+                    </div>
                     Voto: 
                     <span  v-for="(i,index) in 5" :key="index">
                         <i :class="i <= transformScale(item) ? 'fa-solid gold fa-star' : 'fa-regular fa-star'"></i>
@@ -38,6 +46,7 @@
                 <div @click="openClose(item)"  class="review-film-button">
                     <h3>Review</h3>
                 </div>
+                
                 <div v-if="review_film == item.id" class="review-film">
                       <div class="review">
                         <h3 class="text-center">
@@ -46,18 +55,7 @@
                         </h3>
                     </div>
                 </div>
-                <!-- info  -->
-                <!-- <div @click="openCloseInfo(item)"  class="info-film-button">
-                    <h3>Info</h3>
-                </div>
-                <div v-if="info_film == item.id" class="review-film">
-                    <div class="review">
-                        <h3 class="text-center">
-                            Info <br>
-                            {{item.overview ? item.overview : 'Sorry this content isnt available at the moment'}}
-                        </h3>
-                    </div>
-                </div> -->
+                
                 
                 </li>
             </ul>
@@ -70,22 +68,26 @@ export default {
     name: 'GridList',
     props:{
         items: Array,
-        // loader: Boolean,
+
         title: String
     },
     data(){
         return {
             flags:['en', 'es','it','ja','fr'],
+            
             info_film: '',
             review_film: '',
             img: 'https://image.tmdb.org/t/p/w342/',
             mainPage: true,
-            
+            genres: [ { id: 28, name: "Action" }, { id: 12, name: "Adventure" }, { id: 16, name: "Animation" }, 
+            { id: 35, name: "Comedy" }, { id: 80, name: "Crime" }, { id: 99, name: "Documentary" }, { id: 18, name: "Drama" }, { id: 10751, name: "Family" }, { id: 14, name: "Fantasy" }, { id: 36, name: "History" }, { id: 27, name: "Horror" }, { id: 10402, name: "Music" }, { id: 9648, name: "Mystery" }, { id: 10749, name: "Romance" }, { id: 878, name: "Science Fiction" }, { id: 10770, name: "TV Movie" }, { id: 53, name: "Thriller" }, { id: 10752, name: "War" }, { id: 37, name: "Western" }
+             ]
         }
     },
     
     
     methods:{
+        
         showRandom(items){
             if(items == ''){
                 return !this.show
@@ -95,13 +97,7 @@ export default {
         transformScale(item){
             return parseInt(item.vote_average / 2) 
         },
-        // openCloseInfo(item){
-        //     if(this.info_film.length == 0){
-        //         return this.info_film = item.id;
-        //     }else{
-        //         return this.info_film = ''
-        //     }
-        // },
+
         openClose(item){
             if(this.review_film.length == 0){
                 return this.review_film = item.id;
