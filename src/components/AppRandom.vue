@@ -1,6 +1,6 @@
 <template>
   <div class="main-page">
-      <h1 class="text-center m-5">Top movie</h1>
+      <h1 class="text-center m-5">Top Movie</h1>
       <div class="d-flex container-random">
         <div class=" card col-3" v-for="(img, index) in randomFilm" :key="index">
             <img class="" :src="'https://image.tmdb.org/t/p/w342/' + img.backdrop_path" alt=" ">
@@ -73,6 +73,7 @@ export default {
                 this.randomSeries = res.data.results;
                 console.log(this.randomSeries)
                 })
+
     },
     filters: {
         
