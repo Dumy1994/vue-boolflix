@@ -23,6 +23,7 @@
                             
                         </h3>
                     </div>
+                    <!-- lingua  -->
                     <div >
                         Lingua originale: 
                         <img class="flag" v-if="flags.includes(item.original_language)" :src="require(`../assets/${item.original_language}.png`)" :alt="item.original_language">
@@ -31,11 +32,13 @@
                         </span>
                         
                     </div >
+                    <!-- genere  -->
                     <div v-for="(gen, index) in genres" :key="index">
                         <span>
                             {{gen.id == item.genre_ids[0] ? gen.name : ''}}
                         </span>
                     </div>
+                    <!-- voto  -->
                     Voto: 
                     <span  v-for="(i,index) in 5" :key="index">
                         <i :class="i <= transformScale(item) ? 'fa-solid gold fa-star' : 'fa-regular fa-star'"></i>

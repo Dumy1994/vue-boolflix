@@ -1,6 +1,7 @@
 <template>
-  <div class="row container-random">
-      <h1 class="text-center">Top movie</h1>
+  <div class="main-page">
+      <h1 class="text-center m-5">Top movie</h1>
+      <div class="d-flex container-random">
         <div class=" card col-3" v-for="(img, index) in randomFilm" :key="index">
             <img class="" :src="'https://image.tmdb.org/t/p/w342/' + img.backdrop_path" alt=" ">
             <div class="info  text-center">
@@ -15,6 +16,26 @@
             
             </div>  
         </div>
+      </div>
+      <!-- series top  -->
+      <h1 class="text-center m-5">Top series</h1>
+      <div class="d-flex container-random">
+        <div class=" card col-3" v-for="(serie, index) in randomSeries" :key="index">
+            <img class="" :src="'https://image.tmdb.org/t/p/w342/' + serie.backdrop_path" alt=" ">
+            <div class="info  text-center">
+            <h2>
+               {{serie.title}}
+
+            </h2>
+            <h5>Voto: {{transformScale(serie)}}</h5>
+            <span  v-for="(i,index) in 5" :key="index">
+                <i :class="i <= transformScale(serie) ? 'fa-solid gold fa-star' : 'fa-regular fa-star'"></i>
+            </span>
+            
+            </div>  
+        </div>
+      </div>
+        
           
         </div>
         
@@ -31,6 +52,7 @@ export default {
     data(){
         return{
             randomFilm:'',
+            randomSeries:'',
            
         }
     },
@@ -38,11 +60,18 @@ export default {
         transformScale(img){
             return parseInt(img.vote_average / 2) 
         },
+        transform(serie){
+            return parseInt(serie.vote_average / 2) 
+        },
     },
     mounted(){
         axios.get('https://api.themoviedb.org/3/trending/movie/day?api_key=e99307154c6dfb0b4750f6603256716d&language=it-IT').then((res)=>{
                 this.randomFilm = res.data.results;
                 console.log(this.randomFilm)
+                });
+         axios.get('https://api.themoviedb.org/3/trending/tv/day?api_key=e99307154c6dfb0b4750f6603256716d&language=it-IT').then((res)=>{
+                this.randomSeries = res.data.results;
+                console.log(this.randomSeries)
                 })
     },
     filters: {
@@ -52,8 +81,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .container-random{
    width: 100vw;
+   overflow: auto;
 }
 .gold{
         color: rgb(224, 224, 15);

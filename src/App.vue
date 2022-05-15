@@ -93,6 +93,7 @@ header{
 main{
   margin-top: 7vh;
   width: 100vw;
+  min-height: 93vh;
   background-color: $bg-main;
   color: $grey-text;
 }
