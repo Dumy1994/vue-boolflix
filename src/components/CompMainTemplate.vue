@@ -40,10 +40,13 @@
                     </div>
                     <!-- voto  -->
                     Voto: 
-                    <span  v-for="(i,index) in 5" :key="index">
-                        <i :class="i <= transformScale(item) ? 'fa-solid gold fa-star' : 'fa-regular fa-star'"></i>
-                    </span>
-                    <h3 class="float-end voto">{{title}}</h3>
+                    <div class="d-flex "  >
+                        <span v-for="(i,index) in 5" :key="index" >
+                            <i :class="i <= transformScale(item) ? 'fa-solid gold fa-star' : 'fa-regular fa-star'"></i>
+                        </span>
+                    </div>
+
+                    <h3 class=" voto">{{title}}</h3>
                 </div>
                 <!-- review  -->
                 <div @click="openClose(item)"  class="review-film-button">
@@ -153,17 +156,7 @@ export default {
         border-left: 1px solid black;
         border-bottom: 1px solid black;
     }
-    // .info-film-button{
-    //     position: absolute;
-    //     right:  0;
-    //     top: 0;
-    //     background-color:$white-text;
-    //     z-index: 10000;
-    //     color: $bg-text-card;
-    //     cursor: pointer;
-    //     padding: 5px;
-    //     border-bottom-left-radius: 10px;
-    // }
+    
     .review-film{
         position: absolute;
         top: 0;
@@ -177,9 +170,9 @@ export default {
             margin-top: 30px;
         }
     }
-    .title-movie{
+    .info{
        
-        
+       display: none;
     }
     .voto{
        margin-right: 10px; 
@@ -196,7 +189,20 @@ export default {
     }
     .cardCercato{
         max-height: 1000px;
-    }
+        &:hover .info{
+            display: block;
+            position: absolute;
+            left: 0;
+            background-color: $bg-header;
+            height: 100%;
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            flex-flow: column;  
+            cursor: pointer;
+        } 
+     }
 
 
 
