@@ -24,7 +24,7 @@
             <img class="" :src="'https://image.tmdb.org/t/p/w342/' + serie.backdrop_path" alt=" ">
             <div class="info  text-center">
             <h2>
-               {{serie.title}}
+               {{serie.name}}
 
             </h2>
             <h5>Voto: {{transformScale(serie)}}</h5>
@@ -85,7 +85,29 @@ export default {
 
 .container-random{
    width: 100vw;
-   overflow: auto;
+   overflow: scroll;
+   scroll-margin: #b30000;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #b30000; 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #b30000; 
 }
 .gold{
         color: rgb(224, 224, 15);
