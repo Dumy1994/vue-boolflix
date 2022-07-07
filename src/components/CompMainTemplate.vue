@@ -2,8 +2,8 @@
     <section class="container-fluid pt-3">
        <div class="grid">
            
-           <ul class="row  justify-content-center">
-                <li class="card cardCercato img-film p-0 col-sm-4 col-md-3 col-lg-3" v-for="(item) in items" :key="item.id">
+           <ul class="row  justify-content-center align-items-center justify-content-center">
+                <li class="card cardCercato   img-film p-0 col-sm-4 col-md-3 col-lg-3" v-for="(item) in items" :key="item.id">
                     <div class="filmImg" >
                         <img :src="'https://image.tmdb.org/t/p/w342/' + item.poster_path" :alt="item.original_title ">
                     </div>
@@ -132,10 +132,6 @@ export default {
         padding-right: 0!important;
         li{
            margin: 10px ;
-         
-           .img-film{
-            
-           }
         }
     }
     .gold{
@@ -178,17 +174,20 @@ export default {
        margin-right: 10px; 
     }
     .filmImg{
-        height: 87%;
+        height: 100%;
+        object-fit: fill;
         img{
             width: 100%;
             border-top-left-radius: 5px;
+            
         }
     }
     .color-title-original{
         color: $bg-text-card;
     }
     .cardCercato{
-        max-height: 1000px;
+        min-height: 300px ;     
+        overflow: hidden;
         &:hover .info{
             display: block;
             position: absolute;
